@@ -1,0 +1,9 @@
+.git
+.github
+k8s
+Dockerfile
+.dockerignore
+README.md
+kind-config.yaml
+sonar-project.properties
+node_modules
