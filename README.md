@@ -1,27 +1,63 @@
 # Pipeline DevSecOps - Landing Page
 
-Fluxo: commit -> Build -> Sonar -> Trivy -> Push (Docker Hub) -> Deploy (kind)
+Pipeline no GitHub Actions que leva o codigo do commit ate o cluster kind:
 
-## Estrutura
-Coloque os arquivos da landing page (index.html, css, js, imagens) na RAIZ do repositorio,
-junto com estes arquivos.
+commit -> 1 Build -> 2 Sonar -> 3 Trivy -> 4 Push (Docker Hub) -> 5 Deploy (kind)
 
-## Configuracao unica
-1. Secrets (Settings > Secrets and variables > Actions):
-   DOCKERHUB_USERNAME, DOCKERHUB_TOKEN, SONAR_TOKEN
-2. SonarCloud: importar o repo e ajustar projectKey/organization no sonar-project.properties.
-   Em SonarCloud: desativar "Automatic Analysis" (Administration > Analysis Method).
-3. k8s/deployment.yaml: trocar SEU_USUARIO_DOCKERHUB pelo usuario do Docker Hub.
-4. Docker Hub: deixar o repositorio landing-page publico (o kind precisa baixar a imagem).
-5. Runner self-hosted (Settings > Actions > Runners > New self-hosted runner) na maquina com kind e kubectl.
+## O que precisa ter no computador
 
-## Cluster
-kind create cluster --name devops --config kind-config.yaml
-Frontend: http://localhost:8080
+- Windows 10/11 com WSL2 e virtualizacao ativada na BIOS
+- Git
+- GitHub CLI (gh)
+- Docker Desktop (aberto e em execucao)
+- kind
+- kubectl
+- Runner self-hosted do GitHub Actions (instalado e ligado)
+- Minimo recomendado: 8 GB de RAM e 20 GB livres em disco
 
-## Apresentacao
-- Aba Actions com a pipeline verde
-- Resumo do job Trivy e artefato relatorios-trivy
-- Dashboard no SonarCloud
-- Frontend em localhost:8080
-- Faca um commit ao vivo e recarregue a pagina
+
+## Instalacao das ferramentas (Windows PowerShell)
+
+
+Para instalar o que precisa (PowerShell como administrador):
+
+    winget install -e --id Git.Git
+    winget install -e --id GitHub.cli
+    winget install -e --id Docker.DockerDesktop
+    winget install -e --id Kubernetes.kind
+    winget install -e --id Kubernetes.kubectl
+
+Depois de instalar:
+
+1. Reinicie o computador.
+2. Abra o Docker Desktop e espere ficar "running" (aceite a instalacao do WSL2 se pedir).
+3. Feche e abra o PowerShell.
+
+Se o winget nao encontrar um pacote, use winget search NOME para ver o ID correto.
+Em Linux ou macOS, instale as mesmas ferramentas com apt ou brew.
+
+
+### Cluster kind
+
+    kind create cluster --name devops --config kind-config.yaml
+    kubectl get nodes
+
+    kubectl apply -f k8s/
+    kubectl rollout status deployment/landing-page
+
+### 5. Runner self-hosted
+
+O job de deploy roda na sua maquina, porque o kind e local.
+
+No GitHub: repositório > Settings > Actions > Runners > New self-hosted runner (Windows x64).
+Copie os comandos que a página mostra (download, config.cmd --url ... --token ...) e rode no PowerShell.
+Deixe o .\run.cmd aberto.
+
+Deixe esse terminal aberto: o runner precisa estar ligado para o deploy executar.
+
+Quando terminar, confira o deploy:
+
+    kubectl get pods
+    kubectl get svc
+
+E abra http://localhost:8080
