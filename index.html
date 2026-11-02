@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FORJA Academia — Treine duro, evolua sempre</title>
+  <meta name="description" content="Academia completa com musculação, cross training, aulas coletivas e professores presentes. Planos a partir de R$ 79,90/mês." />
+  <meta property="og:title" content="FORJA Academia — Treine duro, evolua sempre" />
+  <meta property="og:description" content="Estrutura completa, treinadores presentes e planos a partir de R$ 79,90/mês. Matricule-se hoje." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --background: #0c120e;
+      --foreground: #f2f5f0;
+      --card: #141b16;
+      --muted: #1b241d;
+      --muted-foreground: #9aa89c;
+      --primary: #b6f224;
+      --primary-foreground: #0c120e;
+      --border: rgba(255, 255, 255, 0.1);
+      --input: rgba(255, 255, 255, 0.15);
+      --font-display: "Bebas Neue", "Arial Narrow", sans-serif;
+      --font-sans: "Barlow", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; border-color: var(--border); }
+    html { scroll-behavior: smooth; }
+    body { background: var(--background); color: var(--foreground); font-family: var(--font-sans); line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+    .container { max-width: 72rem; margin: 0 auto; padding: 0 1rem; }
+
+    /* Cabeçalho */
+    header.site { position: fixed; top: 0; left: 0; right: 0; z-index: 50; border-bottom: 1px solid var(--border); background: rgba(12, 18, 14, 0.9); backdrop-filter: blur(8px); }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 4rem; }
+    .logo { font-family: var(--font-display); font-size: 1.9rem; letter-spacing: 0.15em; }
+    .logo span { color: var(--primary); }
+    .nav-links { display: none; gap: 2rem; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted-foreground); }
+    .nav-links a:hover { color: var(--foreground); }
+    @media (min-width: 768px) { .nav-links { display: flex; } }
+    .btn { display: inline-block; border-radius: 0.375rem; padding: 0.75rem 1.5rem; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; transition: opacity 0.2s, background 0.2s; cursor: pointer; border: 0; }
+    .btn-primary { background: var(--primary); color: var(--primary-foreground); }
+    .btn-primary:hover { opacity: 0.9; }
+    .btn-outline { border: 1px solid var(--input); color: var(--foreground); background: transparent; }
+    .btn-outline:hover { background: var(--muted); }
+
+    /* Hero */
+    .hero { position: relative; display: flex; min-height: 90vh; align-items: center; overflow: hidden; }
+    .hero img.bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .hero .overlay { position: absolute; inset: 0; background: linear-gradient(to right, var(--background) 20%, rgba(12,18,14,0.8) 55%, rgba(12,18,14,0.3)); }
+    .hero-inner { position: relative; width: 100%; padding: 8rem 0; }
+    .eyebrow { display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3em; color: var(--primary); }
+    .eyebrow svg { width: 1rem; height: 1rem; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+    .hero h1 { margin-top: 1rem; max-width: 42rem; font-family: var(--font-display); font-size: clamp(3.5rem, 9vw, 7rem); line-height: 0.95; letter-spacing: 0.03em; }
+    .hero h1 span { color: var(--primary); }
+    .hero p { margin-top: 1.5rem; max-width: 36rem; font-size: 1.1rem; color: var(--muted-foreground); }
+    .hero-actions { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 1rem; }
+
+    /* Números */
+    .stats { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--card); }
+    .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; padding: 2.5rem 0; text-align: center; }
+    @media (min-width: 768px) { .stats-grid { grid-template-columns: repeat(4, 1fr); } }
+    .stats-grid .valor { font-family: var(--font-display); font-size: 3rem; color: var(--primary); }
+    .stats-grid .rotulo { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--muted-foreground); }
+
+    /* Seções */
+    section { padding: 6rem 0; }
+    .section-title { margin-top: 0.5rem; font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 3.5rem); letter-spacing: 0.03em; }
+    .section-title span { color: var(--primary); }
+    .section-lead { margin-top: 0.75rem; color: var(--muted-foreground); }
+
+    /* Modalidades */
+    .cards { margin-top: 3rem; display: grid; gap: 1.5rem; }
+    @media (min-width: 640px) { .cards { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .cards { grid-template-columns: repeat(3, 1fr); } }
+    .card { border: 1px solid var(--border); border-radius: 0.75rem; background: var(--card); padding: 1.5rem; transition: border-color 0.2s; }
+    .card:hover { border-color: rgba(182, 242, 36, 0.5); }
+    .card svg { width: 2rem; height: 2rem; stroke: var(--primary); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .card h3 { margin-top: 1rem; font-family: var(--font-display); font-size: 1.6rem; letter-spacing: 0.05em; }
+    .card p { margin-top: 0.5rem; font-size: 0.9rem; color: var(--muted-foreground); }
+
+    /* Estrutura */
+    .band { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--card); }
+    .split { display: grid; gap: 3rem; align-items: center; }
+    @media (min-width: 1024px) { .split { grid-template-columns: 1fr 1fr; } }
+    .checklist { margin-top: 1.5rem; list-style: none; display: grid; gap: 0.75rem; font-size: 0.9rem; }
+    .checklist li { display: flex; align-items: flex-start; gap: 0.75rem; }
+    .checklist svg { flex-shrink: 0; width: 1rem; height: 1rem; margin-top: 0.3rem; stroke: var(--primary); fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    .gallery { display: grid; gap: 1rem; }
+    @media (min-width: 640px) { .gallery { grid-template-columns: 1fr 1fr; } }
+    .gallery img { height: 18rem; width: 100%; object-fit: cover; border-radius: 0.75rem; border: 1px solid var(--border); }
+    .gallery img:first-child { margin-top: 2rem; }
+
+    /* Planos */
+    .plans { margin-top: 3rem; display: grid; gap: 1.5rem; }
+    @media (min-width: 768px) { .plans { grid-template-columns: repeat(3, 1fr); } }
+    .plan { position: relative; display: flex; flex-direction: column; border: 1px solid var(--border); border-radius: 0.75rem; background: var(--card); padding: 2rem; }
+    .plan.destaque { border-color: var(--primary); box-shadow: 0 0 40px -10px rgba(182, 242, 36, 0.4); }
+    .plan .badge { position: absolute; top: -0.75rem; left: 50%; transform: translateX(-50%); background: var(--primary); color: var(--primary-foreground); border-radius: 999px; padding: 0.25rem 1rem; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; white-space: nowrap; }
+    .plan h3 { font-family: var(--font-display); font-size: 1.6rem; letter-spacing: 0.1em; }
+    .plan .preco { margin-top: 1rem; display: flex; align-items: baseline; gap: 0.25rem; }
+    .plan .preco .rs { font-size: 0.85rem; color: var(--muted-foreground); }
+    .plan .preco strong { font-family: var(--font-display); font-size: 3.75rem; font-weight: 400; color: var(--primary); }
+    .plan .preco .mes { font-size: 0.85rem; color: var(--muted-foreground); }
+    .plan ul { margin: 1.5rem 0; padding-left: 0; list-style: none; flex: 1; display: grid; gap: 0.75rem; font-size: 0.9rem; align-content: start; }
+    .plan ul li { display: flex; align-items: flex-start; gap: 0.75rem; }
+    .plan ul svg { flex-shrink: 0; width: 1rem; height: 1rem; margin-top: 0.3rem; stroke: var(--primary); fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    .plan .btn { text-align: center; }
+
+    /* Depoimentos */
+    .quotes { margin-top: 3rem; display: grid; gap: 1.5rem; }
+    @media (min-width: 768px) { .quotes { grid-template-columns: repeat(3, 1fr); } }
+    .quote { border: 1px solid var(--border); border-radius: 0.75rem; background: var(--background); padding: 1.5rem; }
+    .quote blockquote { font-size: 0.9rem; color: var(--muted-foreground); }
+    .quote figcaption { margin-top: 1rem; font-family: var(--font-display); font-size: 1.25rem; letter-spacing: 0.1em; color: var(--primary); }
+
+    /* Contato */
+    .contact-grid { display: grid; gap: 3rem; }
+    @media (min-width: 1024px) { .contact-grid { grid-template-columns: 1fr 1fr; } }
+    .contact-list { margin-top: 2rem; display: grid; gap: 1rem; font-size: 0.9rem; list-style: none; padding: 0; }
+    .contact-list li { display: flex; align-items: center; gap: 0.75rem; }
+    .contact-list svg { width: 1.25rem; height: 1.25rem; stroke: var(--primary); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .form-box { display: flex; flex-direction: column; justify-content: center; border: 1px solid var(--border); border-radius: 0.75rem; background: var(--card); padding: 2rem; }
+    .form-box h3 { font-family: var(--font-display); font-size: 2rem; letter-spacing: 0.05em; }
+    .form-box h3 span { color: var(--primary); }
+    .form-box .hint { margin-top: 0.5rem; font-size: 0.9rem; color: var(--muted-foreground); }
+    .form-box form { margin-top: 1.5rem; display: grid; gap: 1rem; }
+    .form-box input { width: 100%; border-radius: 0.375rem; border: 1px solid var(--input); background: var(--background); color: var(--foreground); padding: 0.75rem 1rem; font-size: 0.9rem; font-family: var(--font-sans); outline: none; }
+    .form-box input:focus { border-color: var(--primary); }
+
+    /* Rodapé */
+    footer.site { border-top: 1px solid var(--border); padding: 2rem 0; text-align: center; font-size: 0.85rem; color: var(--muted-foreground); }
+    footer.site .logo { display: block; margin-bottom: 0.5rem; }
+  </style>
+</head>
+<body>
+  <!-- Cabeçalho -->
+  <header class="site">
+    <div class="container nav">
+      <a href="#topo" class="logo">FORJA<span>.</span></a>
+      <nav class="nav-links">
+        <a href="#modalidades">Modalidades</a>
+        <a href="#estrutura">Estrutura</a>
+        <a href="#planos">Planos</a>
+        <a href="#contato">Contato</a>
+      </nav>
+      <a href="#planos" class="btn btn-primary">Matricule-se</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="topo" style="padding: 0;">
+    <img class="bg" src="assets/hero-gym.jpg" alt="Interior da FORJA Academia" />
+    <div class="overlay"></div>
+    <div class="container hero-inner">
+      <p class="eyebrow">
+        <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Academia 24h aberta
+      </p>
+      <h1>TREINE DURO.<br /><span>EVOLUA SEMPRE.</span></h1>
+      <p>Musculação, cross training, lutas e aulas coletivas em uma estrutura pensada para quem leva treino a sério. Professores presentes em todos os horários.</p>
+      <div class="hero-actions">
+        <a href="#planos" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 0.95rem;">Ver planos</a>
+        <a href="#contato" class="btn btn-outline" style="padding: 1rem 2rem; font-size: 0.95rem;">Agendar aula experimental</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Números -->
+  <div class="stats">
+    <div class="container stats-grid">
+      <div><p class="valor">2.400+</p><p class="rotulo">alunos ativos</p></div>
+      <div><p class="valor">1.200m²</p><p class="rotulo">de estrutura</p></div>
+      <div><p class="valor">12 anos</p><p class="rotulo">de história</p></div>
+      <div><p class="valor">80+</p><p class="rotulo">equipamentos</p></div>
+    </div>
+  </div>
+
+  <!-- Modalidades -->
+  <section id="modalidades">
+    <div class="container">
+      <p class="eyebrow">Modalidades</p>
+      <h2 class="section-title">Um treino para <span>cada objetivo</span></h2>
+      <div class="cards">
+        <article class="card">
+          <svg viewBox="0 0 24 24"><path d="M6.5 6.5l11 11"/><path d="M21 21l-1-1"/><path d="M3 3l1 1"/><path d="M18 22l4-4"/><path d="M2 6l4-4"/><path d="M3 10l7-7"/><path d="M14 21l7-7"/></svg>
+          <h3>Musculação</h3>
+          <p>Área completa com máquinas e pesos livres, treinos periodizados com acompanhamento individual.</p>
+        </article>
+        <article class="card">
+          <svg viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+          <h3>Cross Training</h3>
+          <p>WODs diários em box dedicado, escaláveis do iniciante ao atleta avançado.</p>
+        </article>
+        <article class="card">
+          <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="19" r="3"/><path d="M12.5 4.5l6 11"/><path d="M17.5 15.5l-11 4"/><path d="M4.5 16.5l6-11"/></svg>
+          <h3>Ciclo Indoor</h3>
+          <p>Aulas dinâmicas de spinning em estúdio com iluminação e som imersivos.</p>
+        </article>
+        <article class="card">
+          <svg viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7z"/></svg>
+          <h3>Funcional</h3>
+          <p>Treinos em circuito para condicionamento, emagrecimento e mobilidade.</p>
+        </article>
+        <article class="card">
+          <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <h3>Lutas</h3>
+          <p>Jiu-jitsu, muay thai e boxe com professores faixa preta e treinos para todos os níveis.</p>
+        </article>
+        <article class="card">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <h3>HIIT & Jump</h3>
+          <p>Aulas coletivas de alta intensidade para acelerar resultados em pouco tempo.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Estrutura -->
+  <section id="estrutura" class="band">
+    <div class="container split">
+      <div>
+        <p class="eyebrow">Estrutura</p>
+        <h2 class="section-title">Feita para quem <span>treina a sério</span></h2>
+        <p class="section-lead">Mais de 1.200m² com área de pesos livres, box de cross training, estúdio de ciclo indoor, sala de lutas, vestiários completos e lanchonete.</p>
+        <ul class="checklist">
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Equipamentos importados renovados anualmente</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Ar-condicionado em todas as salas</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Estacionamento gratuito para alunos</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Aberta de segunda a sábado, 5h30 às 23h</li>
+        </ul>
+      </div>
+      <div class="gallery">
+        <img src="assets/estrutura-1.jpg" alt="Área de halteres da academia" loading="lazy" />
+        <img src="assets/estrutura-2.jpg" alt="Área de pesos livres da academia" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Planos -->
+  <section id="planos">
+    <div class="container">
+      <p class="eyebrow">Planos</p>
+      <h2 class="section-title">Escolha o seu <span>plano</span></h2>
+      <p class="section-lead">Sem taxa de matrícula. Cancele quando quiser.</p>
+      <div class="plans">
+        <article class="plan">
+          <h3>MENSAL</h3>
+          <p class="preco"><span class="rs">R$</span><strong>99,90</strong><span class="mes">/mês</span></p>
+          <ul>
+            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Acesso livre à academia</li>
+            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Aulas coletivas inclusas</li>
+            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Avaliação física inicial</li>
+          </ul>
+          <a href="#contato" class="btn btn-outline">Assinar Mensal</a>
+        </article>
+        <article class="plan destaque">
+          <span class="badge">Mais escolhido</span>
+          <h3>TRIMESTRAL</h3>
+          <p class="preco"><span class="rs">R$</span><strong>89,90</strong><span class="mes">/mês</span></p>
+          <ul>
+            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Tudo do plano Mensal</li>
+            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Plano de treino trimestral</li>
+            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>1 aula de avaliação por mês</li>
+            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Acesso ao app de treinos</li>
+          </ul>
+          <a href="#contato" class="btn btn-primary">Assinar Trimestral</a>
+        </article>
+        <article class="plan">
+          <h3>ANUAL</h3>
+          <p class="preco"><span class="rs">R$</span><strong>79,90</strong><span class="mes">/mês</span></p>
+          <ul>
+            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Tudo do plano Trimestral</li>
+            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Camiseta FORJA de brinde</li>
+            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Reavaliação física a cada 3 meses</li>
+          </ul>
+          <a href="#contato" class="btn btn-outline">Assinar Anual</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Depoimentos -->
+  <section class="band">
+    <div class="container">
+      <p class="eyebrow">Depoimentos</p>
+      <h2 class="section-title">Quem treina, <span>recomenda</span></h2>
+      <div class="quotes">
+        <figure class="quote">
+          <blockquote>&ldquo;Melhor academia que já treinei. Equipamentos novos e professores que realmente acompanham a evolução.&rdquo;</blockquote>
+          <figcaption>Marcos A.</figcaption>
+        </figure>
+        <figure class="quote">
+          <blockquote>&ldquo;Entrei no plano trimestral e perdi 8kg em 4 meses. As aulas coletivas são o ponto alto do meu dia.&rdquo;</blockquote>
+          <figcaption>Juliana P.</figcaption>
+        </figure>
+        <figure class="quote">
+          <blockquote>&ldquo;Ambiente sério, sem enrolação. O box de cross training é impecável e a comunidade é top.&rdquo;</blockquote>
+          <figcaption>Rafael S.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contato -->
+  <section id="contato">
+    <div class="container contact-grid">
+      <div>
+        <p class="eyebrow">Contato</p>
+        <h2 class="section-title">Venha <span>treinar</span></h2>
+        <p class="section-lead">A primeira aula é grátis. Traga um documento com foto e roupa de treino — a gente cuida do resto.</p>
+        <ul class="contact-list">
+          <li><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Rua das Palmeiras, 123 — Centro, São Paulo/SP</li>
+          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Seg a sex: 5h30 às 23h · Sáb: 8h às 18h · Dom: 9h às 13h</li>
+          <li><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(11) 99999-9999</li>
+          <li><svg viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>@forja.academia</li>
+        </ul>
+      </div>
+      <div class="form-box">
+        <h3>Aula experimental <span>grátis</span></h3>
+        <p class="hint">Preencha e a nossa equipe entra em contato para agendar.</p>
+        <form onsubmit="event.preventDefault(); alert('Obrigado! Em breve entraremos em contato.');">
+          <input type="text" placeholder="Seu nome" required />
+          <input type="tel" placeholder="Seu WhatsApp" required />
+          <button type="submit" class="btn btn-primary">Quero minha aula grátis</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rodapé -->
+  <footer class="site">
+    <div class="container">
+      <span class="logo">FORJA<span>.</span></span>
+      <p>FORJA Academia · Projeto acadêmico de DevOps · © 2026 Todos os direitos reservados</p>
+    </div>
+  </footer>
+</body>
+</html>
